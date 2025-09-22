@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+psycopg2-binary
+pandas
+python-dotenv
+asyncpg
+ciso8601
+pytest
+httpx

@@ -1,0 +1,43 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker volumes and database data
+postgres_data/
+
+# Logs
+*.log
+
+# Include Sollfrequenz.csv
+!data/Sollfrequenz.csv
+# Ignore large synthetic dataset
+/data/sollfrequenz_31M.csv
+
+# Secrets (never commit credentials)
+*.env
+secrets.json
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Test cache
+.pytest_cache/
+
+# Other
+*.swp
+*.swo

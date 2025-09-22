@@ -1,0 +1,55 @@
+services:
+  db:
+    image: timescale/timescaledb:latest-pg15 # Using PostgreSQL 15 with TimescaleDB: Provides superior performance and specialized functions for time-series data, making the solution more scalable and robust.
+    container_name: swissgrid-db-1
+    restart: always
+    environment:
+      POSTGRES_USER: swissgrid
+      POSTGRES_PASSWORD: swissgrid1234
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U swissgrid -d timeseries_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    container_name: swissgrid-api-1
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://swissgrid:swissgrid1234@db:5432/timeseries_db
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/docs || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  test:
+    build: .
+    container_name: swissgrid-test-1
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      DATABASE_URL: postgresql://swissgrid:swissgrid1234@db:5432/timeseries_db
+    depends_on:
+      - api
+    entrypoint: ""
+    #command: ["sh", "-c", "echo 'Container started'; env; sleep 10; echo 'Running pytest...'; python -u -m pytest tests/ -v --maxfail=1 --tb=short --disable-warnings --strict-markers --strict-config"]
+    command: ["sh", "-c", "echo 'Container started'; env; sleep 10; echo 'Running pytest...'; python -u -m pytest tests/ -v --maxfail=1 --tb=short -W default"]
+    restart: "no" # ensures the test container does not restart if tests fail
+
+volumes:
+  postgres_data:

@@ -47,7 +47,6 @@ services:
     depends_on:
       - api
     entrypoint: ""
-    #command: ["sh", "-c", "echo 'Container started'; env; sleep 10; echo 'Running pytest...'; python -u -m pytest tests/ -v --maxfail=1 --tb=short --disable-warnings --strict-markers --strict-config"]
     command: ["sh", "-c", "echo 'Container started'; env; sleep 10; echo 'Running pytest...'; python -u -m pytest tests/ -v --maxfail=1 --tb=short -W default"]
     restart: "no" # ensures the test container does not restart if tests fail
 

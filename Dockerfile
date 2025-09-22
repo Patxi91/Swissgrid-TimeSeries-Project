@@ -11,7 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Run tests
 COPY src/ ./src/
 COPY tests/ ./tests/
-#RUN PYTHONPATH=/app pytest --maxfail=1 --disable-warnings --tb=short
 
 # Expose the port the app runs on
 EXPOSE 8000

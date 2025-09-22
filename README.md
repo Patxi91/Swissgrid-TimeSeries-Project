@@ -276,7 +276,9 @@ You can use the `GET /data/aggregated/{table_name}` endpoint to query aggregated
   { "timestamp": "2021-05-02T10:00:00Z", "frequency": 50 },
   { "timestamp": "2021-05-02T10:00:30Z", "frequency": 50 },
   { "timestamp": "2021-05-02T10:01:00Z", "frequency": 50 },
-  ...
+  .
+  .
+  .,
   { "timestamp": "2021-05-05T09:59:00Z", "frequency": 49.99 },
   { "timestamp": "2021-05-05T09:59:30Z", "frequency": 49.99 },
   { "timestamp": "2021-05-05T10:00:00Z", "frequency": 49.99 }

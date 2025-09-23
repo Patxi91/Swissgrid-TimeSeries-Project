@@ -100,8 +100,8 @@ What we're looking for:
 ## Setup Steps
 1. **Clone the repository:**
    ```sh
-   git clone <repo-url>
-   cd swissgrid
+   git clone https://github.com/Patxi91/Swissgrid-TimeSeries-Project
+   cd Swissgrid-TimeSeries-Project
    ```
 2. **Create and activate a Python virtual environment (optional but recommended):**
    ```sh
@@ -125,6 +125,8 @@ After running, if the API is successfully spun up, you should see the following 
 <p align="center" style="background:white;padding:16px;border-radius:8px;">
   <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Swissgrid_logo.svg" alt="Swissgrid Logo" width="300" style="background:white;" />
 </p>
+
+**Note:** The app has been parallelly hosted on AWS and the API is alternatively available at: http://13.60.69.239:8000/
 
 ---
 
@@ -305,6 +307,10 @@ You can use the `GET /data/aggregated/{table_name}` endpoint to query aggregated
 These examples demonstrate how you can flexibly query time-series data at different granularities and time ranges using the API.
 
 ---
+
+# Notes
+
+The API is also available online at: http://13.60.69.239:8000/
 
 If any results drift from what is described here, or if you have any questions, feel free to reach me:
 - 📧 [Email](mailto:oyaga888@gmail.com)

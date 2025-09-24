@@ -126,7 +126,7 @@ After running, if the API is successfully spun up, you should see the following 
   <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Swissgrid_logo.svg" alt="Swissgrid Logo" width="300" style="background:white;" />
 </p>
 
-**Note:** The app has been parallelly hosted on AWS and the API is alternatively available at: http://13.60.69.239:8000/
+**Note:** The app has been parallelly hosted on AWS and the API is alternatively available at: http://13.53.124.152:8000/
 
 ---
 
@@ -310,7 +310,7 @@ These examples demonstrate how you can flexibly query time-series data at differ
 
 # Notes
 
-The API is also available online at: http://13.60.69.239:8000/
+The API is also available online at: http://13.53.124.152:8000/
 
 If any results drift from what is described here, or if you have any questions, feel free to reach me:
 - 📧 [Email](mailto:oyaga888@gmail.com)

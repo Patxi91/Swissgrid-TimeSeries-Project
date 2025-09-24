@@ -13,6 +13,13 @@ from enum import Enum
 class TimeSeriesData(BaseModel):
     timestamp: datetime
     frequency: float
+    class Config:
+        schema_extra = {
+            "example": {
+                "timestamp": "2021-05-02T10:00:00Z",
+                "frequency": 50.0
+            }
+        }
 
 
 # Allowed tables (whitelist)
@@ -97,8 +104,16 @@ def read_root():
 @app.get("/data/raw/{table_name}", response_model=List[TimeSeriesData], tags=["Query Data"])
 async def get_raw_data(
     table_name: TableName, 
-    start_time: str = Query(..., description="Start of the time range (ISO 8601)."),
-    end_time: str = Query(..., description="End of the time range (ISO 8601).")
+    start_time: str = Query(
+        ...,
+        description="Start of the time range (ISO 8601).",
+        example="2021-05-02T10:00:00Z"
+    ),
+    end_time: str = Query(
+        ...,
+        description="End of the time range (ISO 8601).",
+        example="2021-05-02T10:15:00Z"
+    )
 ):
     """Get raw data from a specified table within a given time range."""
     clean_table_name = table_name.value
@@ -134,8 +149,16 @@ async def get_raw_data(
 @app.get("/data/aggregated/{table_name}", response_model=List[TimeSeriesData], tags=["Query Data"])
 async def get_aggregated_data(
     table_name: TableName,
-    start_time: str = Query(..., description="Start of the time range (ISO 8601)."),
-    end_time: str = Query(..., description="End of the time range (ISO 8601)."),
+    start_time: str = Query(
+        ...,
+        description="Start of the time range (ISO 8601).",
+        example="2021-05-02T10:00:00Z"
+    ),
+    end_time: str = Query(
+        ...,
+        description="End of the time range (ISO 8601).",
+        example="2021-05-02T10:15:00Z"
+    ),
     resolution: Resolution = Query(Resolution.m15, description="Aggregation interval")
 ):
     """Get aggregated data from a specified table."""

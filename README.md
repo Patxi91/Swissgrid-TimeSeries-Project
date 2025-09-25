@@ -59,6 +59,20 @@ What we're looking for:
 <br><br>
 ---
 
+# Architecture Decision Records (ADR)
+
+## ADR-001: Database Choice
+- **Context:** Need scalable, efficient time-series storage and querying for grid frequency data.
+- **Decision:** Use TimescaleDB (PostgreSQL extension).
+- **Consequences:** Enables hypertables, fast queries, partitioning, and easy scaling for large datasets.
+
+## ADR-002: API Framework Choice
+- **Context:** Need asynchronous, high-performance API with automatic documentation and easy development.
+- **Decision:** Use FastAPI.
+- **Consequences:** Supports async operations, non-blocking I/O, automatic OpenAPI docs, and rapid development. Ideal for scalable, modern APIs.
+
+---
+
 # Solution Overview
 
 ## 1. Technology Choices (Database and API)

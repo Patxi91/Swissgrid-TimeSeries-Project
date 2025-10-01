@@ -13,13 +13,16 @@ from enum import Enum
 class TimeSeriesData(BaseModel):
     timestamp: datetime
     frequency: float
-    class Config:
-        schema_extra = {
-            "example": {
-                "timestamp": "2021-05-02T10:00:00Z",
-                "frequency": 50.0
-            }
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "timestamp": "2021-05-02T10:00:00Z",
+                    "frequency": 50.0
+                }
+            ]
         }
+    }
 
 
 # Allowed tables (whitelist)
@@ -107,12 +110,22 @@ async def get_raw_data(
     start_time: str = Query(
         ...,
         description="Start of the time range (ISO 8601).",
-        example="2021-05-02T10:00:00Z"
+        examples={
+            "start": {
+                "summary": "Example start time",
+                "value": "2021-05-02T10:00:00Z"
+            }
+        }
     ),
     end_time: str = Query(
         ...,
         description="End of the time range (ISO 8601).",
-        example="2021-05-02T10:15:00Z"
+        examples={
+            "end": {
+                "summary": "Example end time",
+                "value": "2021-05-02T10:15:00Z"
+            }
+        }
     )
 ):
     """Get raw data from a specified table within a given time range."""
@@ -152,12 +165,22 @@ async def get_aggregated_data(
     start_time: str = Query(
         ...,
         description="Start of the time range (ISO 8601).",
-        example="2021-05-02T10:00:00Z"
+        examples={
+            "start": {
+                "summary": "Example start time",
+                "value": "2021-05-02T10:00:00Z"
+            }
+        }
     ),
     end_time: str = Query(
         ...,
         description="End of the time range (ISO 8601).",
-        example="2021-05-02T10:15:00Z"
+        examples={
+            "end": {
+                "summary": "Example end time",
+                "value": "2021-05-02T10:15:00Z"
+            }
+        }
     ),
     resolution: Resolution = Query(Resolution.m15, description="Aggregation interval")
 ):
